@@ -1,5 +1,6 @@
 <?php
 require_once 'functions/functions.php';
+// сессия админа
 session_start();
 if (isset($_POST['username'])) {login();}
 if (isset($_GET['action'])) 
@@ -8,7 +9,6 @@ if (isset($_GET['action']))
 		header('Location: index.php');
 	}
 $user = (isset($_SESSION['user']))?$_SESSION['user']:'';
-//echo "<br>$user<br>";
 $page = (isset($_GET['page']))?$_GET['page']:'home';
        
 ?>
@@ -31,17 +31,24 @@ $page = (isset($_GET['page']))?$_GET['page']:'home';
 	    </div>
 	    <ul class="nav navbar-nav">
 	      <li><a href="index.php?page=newtask">Новая задача</a></li>
-	    </ul>
+	      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Сортировать <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          		<!-- Кнопки сортировки элементов задачника -->
+            <li><a href="index.php?page=home&set=1">по имени</a></li>
+            <li><a href="index.php?page=home&set=2">по эл.почте</a></li>
+            <li><a href="index.php?page=home&set=3">по статусу</a></li>
+	    		</ul>
+	    	</li>
+	   	</ul>
 	    <?php if ($user==''): ?>
-	    	<div class="nav navbar-nav  navbar-right">
-	    	<button id="adminbutton" class="btn btn-danger navbar-btn"><span class="glyphicon glyphicon-log-in"></span> Админ</button>
-	    </div>
+	    	<!-- Админ или выход если админ залогинен -->
+	    	<button id="adminbutton" class="btn btn-danger navbar-btn navbar-right"><span class="glyphicon glyphicon-log-in"></span> Админ</button>
 	  	<?php else: ?>
-	  		<div class="nav navbar-nav  navbar-right">
-	    	<a href="index.php?action=logout" class="btn btn-danger navbar-btn"><span class="glyphicon glyphicon-log-out"></span> Выход</a>
-	    </div>
-	    <?php endif ?>
+	    	<a href="index.php?action=logout" class="btn btn-danger navbar-btn navbar-right"><span class="glyphicon glyphicon-log-out"></span> Выход</a>
 	    
+	    <?php endif ?>
+
 	  </div>
 	</nav>
 	<!-- Конец хедера -->
@@ -62,6 +69,7 @@ $page = (isset($_GET['page']))?$_GET['page']:'home';
 
 		<?php if ($page=='home') {include 'views/home.php';} ?>
 		<?php if ($page=='newtask') {include 'views/newtask.php';} ?>
+		<?php if ($page=='edittask') {include 'views/edittask.php';} ?>
 
 
 
@@ -85,6 +93,8 @@ $page = (isset($_GET['page']))?$_GET['page']:'home';
 	  				$('.adminform').slideUp( "slow" );
 	  				}
 	  			});
+
+	  			//этот код высчитывает количество задач выводимых в одном ряду
 
   			/*$(function () {
   				//Находим ширину окна браузера
