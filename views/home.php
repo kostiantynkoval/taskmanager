@@ -22,12 +22,11 @@
 				}
 				
 
-				$i=0;
 				//пока существуют задачи в БД будем прокручивать их по одной
 				while ($task = $res->fetch()) 
 				{
 					?>
-				  <div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="col-sm-6 col-md-4 col-lg-3 task">
 				    <div class="thumbnail">
 				      <img class="taskimage" src="<?php echo $task['image'] ?>" alt="Task1">
 				      <div class="caption">
@@ -45,9 +44,7 @@
 				    <h4><span class="label label-success">Выполнено!</span></h4>
 							<?php endif ?>
 				  </div>
-				  <div class="isrow" data-id="<?php echo $i; ?>"></div>
 					<?php
-					$i++;
 				}
 					?>
 

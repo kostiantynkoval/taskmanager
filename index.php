@@ -79,45 +79,6 @@ $page = (isset($_GET['page']))?$_GET['page']:'home';
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<script type="text/javascript">
-
-		(function($, undefined){
-  		$(function(){
-
-  			//делаем вход в админрегистрацию исчезающим
-	  			$('#adminbutton').on('click', function () {
-	  				if ($('.adminform').is(':hidden')){
-	  					$('.adminform').slideDown( "slow" );
-	  				}
-	  				else{
-	  				$('.adminform').slideUp( "slow" );
-	  				}
-	  			});
-
-	  			//этот код высчитывает количество задач выводимых в одном ряду
-
-  			/*$(function () {
-  				//Находим ширину окна браузера
-	  			var myWidth = $(window).width();
-	  			//Находим какое количество задач будет выведено в каждом ряду
-	  			var tasksInRow;
-	  			if (myWidth<768) {tasksInRow = 1} 
-	  			else if (myWidth>=768&&myWidth<992) {tasksInRow = 2}
-	  			else if (myWidth>=992&&myWidth<1200) {tasksInRow = 3}
-	  			else {tasksInRow = 4};
-	  			console.log(tasksInRow);
-	  			var n = $('.isrow').length;
-	  			console.log(n);
-	  			var multi = Math.floor(n/tasksInRow);
-	  			for (var i = 1; i <= multi; i++) 
-	  			{
-	  				$("div[data-id="+(i*tasksInRow)+"]").addClass('row');
-	  				console.log($("div[data-id="+(i*tasksInRow)+"]"));
-	  			}
-
-  			});*/
-  	  });
-		})(jQuery);
-	</script>
+	<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>
